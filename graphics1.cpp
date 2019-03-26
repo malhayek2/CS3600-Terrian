@@ -16,7 +16,7 @@
 #include <iostream>
 #include <time.h>
 #include "Rat.h"
-#include "glut.h"
+#include <GL/glut.h>
 // #include <GLUT/GLUT.h>
 
 

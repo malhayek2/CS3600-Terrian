@@ -8,7 +8,7 @@
 
 #include <iostream>
 #include <cmath>
-#include "glut.h"
+#include <GL/glut.h>
 
 #include "Rat.h"
 
@@ -66,7 +66,7 @@ void Rat::setMaze(Maze *maze)
 
 Rat::Rat()
 {
-    x = y = .5;
+    x = y = 20;
     degrees = 0;
 }
 

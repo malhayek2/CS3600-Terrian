@@ -1,7 +1,7 @@
 #include "maze.h"
 #include <cstdlib>
 #include <iostream>
-#include "glut.h"
+#include <GL/glut.h>
 #include <time.h>
 #include <cmath>
 
@@ -67,6 +67,7 @@ void Maze::Cell::draw(int i, int j)
     glColor3ub(i*2342423%255, j*2234232342%255, j*i*128%255);
     if (bottom)
     {
+        
         glBegin(GL_QUADS);
         glVertex3d(i, j, 0);
         glVertex3d(i+1, j, 0);
@@ -105,7 +106,14 @@ void Maze::Cell::draw(int i, int j)
 
 double Maze::getZ(double x, double y)
 {
-    return (y * .03 * sin(y * .09)) + (.221 * y * cos(x*.09)) + ( .9 * sin(x*.432)) * (x * .03 + cos(y*.32324));
+    // return (y * .03 * sin(y * .09)) + (.221 * y * cos(x*.09)) + ( .9 * sin(x*.432)) * (x * .03 + cos(y*.32324));
+    double z = 0;
+    double zscale = 0.75;
+    z += 2*sin(0.4*y);
+    z += 1.5*cos(0.3*x);
+    z += 4*sin(0.2*x)*cos(0.3*y);
+    z += 6*sin(0.11*x)*cos(0.03*y);
+    return z*zscale; 
 }
 
 void Maze::draw(double waterHeight)
@@ -119,11 +127,16 @@ void Maze::draw(double waterHeight)
         }
     }
 
+
     for (int i=0; i<RES-1; i++)
     {
         for (int j=0; j<RES-1; j++)
         {
-            glColor3ub(i*2342423%255, j*2234232342%255, j*i*128%255);
+            int r = i*300 + j *350 + 75;
+            int g = i*200 + j*450 + 25;
+            int b = i*1200 + j*550 + 175;
+            glColor3ub((unsigned char) (r%256), (unsigned char) (g%256), (unsigned char) (b%256) );
+            // glColor3ub(i*2342423%255, j*2862257%255, j*i*128%255);
             glBegin(GL_QUADS);
             glVertex3d(i, j, zValues[i][j]);
             glVertex3d(i+1, j, zValues[i+1][j]);
